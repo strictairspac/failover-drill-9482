@@ -2,6 +2,7 @@ import os
 from sqlalchemy import select
 from src.config.database import Base, engine, Session
 from src.models.entities import User, Node, Scenario
+from src.services.sandbox_service import seed_orders
 from src.utils.security import hash_password
 
 def seed():
@@ -18,5 +19,6 @@ def seed():
         for name, fence in [('晚班隔离演练',True),('缺少隔离证明',False)]:
             if not db.scalar(select(Scenario).where(Scenario.name == name)):
                 db.add(Scenario(name=name, fail_primary=True, fence_primary=fence, max_data_loss=0, required_term=7))
+        seed_orders(db)
         db.commit()
 if __name__ == '__main__': seed()

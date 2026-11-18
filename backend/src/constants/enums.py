@@ -1,2 +1,5 @@
 ROLES = ('admin', 'operator', 'viewer')
 DRILL_STATUSES = ('queued', 'running', 'completed', 'failed')
+BUILD_STATUSES = ('queued', 'building', 'paused', 'active', 'failed')
+BUILD_STAGES = ('scanning', 'awaiting_correction', 'catching_up', 'validating', 'active')
+FAILOVER_STATUSES = ('deferred', 'completed')
